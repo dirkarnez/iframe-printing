@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
+  <link rel="stylesheet" href="https://meyerweb.com/eric/tools/css/reset/reset.css" type="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+
+    <button id="btn-create-iframe">Create iframe</button>
+    <button id="btn-eval-iframe">Run eval in iframe</button>
+    <script>
+        var iframe = null;
+
+        const btnCreateIframe = document.getElementById("btn-create-iframe");
+
+        btnCreateIframe.addEventListener("click", function (e) {
+            // Ensure the iframe content is fully loaded before accessing
+            iframe = document.createElement("iframe");
+            iframe.addEventListener('load', function () {
+                var sourceCode = iframe.contentDocument.documentElement.outerHTML;
+                console.log(sourceCode);
+            });
+
+            // iframe.style.borderRadius = "12px";
+            iframe.srcdoc = "<h1 style='background-color: blue'>I am inside iframe</h1>";
+            iframe.loading = "lazy";
+            iframe.allowFullscreen = "false";
+            iframe.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
+            iframe.width = "100%";
+            iframe.frameBorder = "1";
+            document.body.insertBefore(iframe, document.body.firstChild);
+        });
+
+        const btnEvalIframe = document.getElementById("btn-eval-iframe");
+        btnEvalIframe.addEventListener("click", function (e) {
+            alert(iframe.contentDocument.documentElement.querySelector("body > h1").innerText);
+        });
+    </script>
+</body>
+
+</html>
