@@ -1,5 +1,5 @@
-[iframe-playground](https://dirkarnez.github.io/iframe-playground)
-==================================================================
+[iframe-printing](https://dirkarnez.github.io/iframe-printing)
+==============================================================
 ### Notes
 - ```css
   @media print { @page { size: A4; } }
